@@ -1,0 +1,130 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --glass-border: rgba(255, 255, 255, 0.08);
+  --glass-bg: rgba(15, 23, 42, 0.75);
+  --glass-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+}
+
+html.dark body {
+  color: #f8fafc; /* Slate 50 */
+  background-color: #020617; /* Slate 950 - Deeper for Enterprise feel */
+}
+
+html:not(.dark) body {
+  color: #0f172a; /* Slate 900 */
+  background-color: #f8fafc; /* Slate 50 */
+}
+
+body {
+  font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  font-feature-settings: 'tnum' on, 'cv11' on, 'ss01' on; 
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow: hidden;
+  margin: 0;
+}
+
+/* Text Selection */
+::selection {
+  background: rgba(99, 102, 241, 0.2); /* Indigo tint */
+  color: inherit;
+}
+
+/* Dynamic Background Mesh - Dark Mode */
+html.dark .bg-mesh {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: -1;
+  background: 
+    radial-gradient(circle at 15% 50%, rgba(30, 58, 138, 0.15), transparent 40%),
+    radial-gradient(circle at 85% 30%, rgba(88, 28, 135, 0.1), transparent 40%);
+  filter: blur(100px);
+  opacity: 1;
+  pointer-events: none;
+}
+
+/* Dynamic Background Mesh - Light Mode */
+html:not(.dark) .bg-mesh {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: -1;
+  background: 
+    radial-gradient(circle at 0% 0%, rgba(226, 232, 240, 0.8), transparent 50%),
+    radial-gradient(circle at 100% 100%, rgba(241, 245, 249, 0.8), transparent 50%);
+  opacity: 1;
+  pointer-events: none;
+}
+
+.glass-panel {
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+}
+
+html.dark .glass-panel {
+  background: rgba(15, 23, 42, 0.7);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.3), 0 2px 4px -1px rgba(0, 0, 0, 0.15);
+}
+
+html:not(.dark) .glass-panel {
+  background: rgba(255, 255, 255, 0.9);
+  border: 1px solid rgba(226, 232, 240, 0.8); /* Slate 200 */
+  box-shadow: 0 4px 6px -1px rgba(148, 163, 184, 0.1), 0 2px 4px -1px rgba(148, 163, 184, 0.05);
+}
+
+/* Refined Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent; 
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(148, 163, 184, 0.2); 
+  border-radius: 3px;
+  transition: background-color 0.2s;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(100, 116, 139, 0.4); 
+}
+
+/* Utility for hiding scrollbar but keeping functionality */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+
+/* Smooth Table Row Transitions */
+tr {
+  transition-property: background-color, border-color, opacity, transform;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 200ms;
+}
+
+/* Animations */
+@keyframes spin-slow {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+.animate-spin-slow {
+  animation: spin-slow 8s linear infinite;
+}
+
+.custom-scrollbar::-webkit-scrollbar {
+  width: 5px;
+}
